@@ -40,16 +40,7 @@ public class CartController {
 	@Autowired
 	MyOrderRepository myOrderRepository;
 	
-//	@ModelAttribute
-//	public void addCommonData(Model model,Principal principal) {
-//		String username = principal.getName();
-//		System.out.println("USERNAME"+username);
-//		
-//		User user = userRepository.getUserByName(username);
-//		System.out.println("USER"+user);
-//		
-//		model.addAttribute("user"+user);
-//	}
+
 
 	@GetMapping("/addToCart/{id}")
 	public String addToCart(@PathVariable int id) {
@@ -112,9 +103,7 @@ public class CartController {
 		JSONObject object = new JSONObject();
 		object.put("amount", amt*100);
 		object.put("currency", "INR");
-		//object.put("reciept", "txn_235425");
-		
-		//new order
+	
 		
 		Order order = client.Orders.create(object);
 		System.out.println(order);
@@ -140,6 +129,6 @@ public class CartController {
 	myorder.setPaymentId(data.get("payment_id").toString());
 	myorder.setStatus(data.get("status").toString());
 	this.myOrderRepository.save(myorder);
-		return ResponseEntity.ok(Map.of("msg","updated"));
+		return ResponseEntity.ok("Success");
 	}
 }
